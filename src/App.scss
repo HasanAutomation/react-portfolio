@@ -6,11 +6,22 @@
         height: calc(100vh - 70px);
         background-color: lightsalmon;
         position: relative;
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+        scrollbar-width: none; // firefox
+        &::-webkit-scrollbar{
+            display: none;
+            // background: black;
+        }
+        // &::-webkit-scrollbar-thumb{
+        //     background-color: lightgray;
+        // }
         top: 70px;
 
         > *{
             width: 100%;
             height: calc(100vh - 70px);
+            scroll-snap-align: start;
         }
     }
 }
