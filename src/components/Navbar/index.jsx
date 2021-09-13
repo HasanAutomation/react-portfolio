@@ -15,7 +15,7 @@ export default function Navbar({ menuOpen, setMenuOpen }) {
           </div>
           <div className='item-container'>
             <Mail className='icon' />
-            <span>+918240272335</span>
+            <span>hans1998ali@gmail.com</span>
           </div>
         </div>
         <div className='right'>
