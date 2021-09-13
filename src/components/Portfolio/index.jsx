@@ -1,9 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import {
+  contentPortfolio,
+  designPortfolio,
+  featuredPortfolio,
+  mobilePortfolio,
+  webPortfolio,
+} from '../../dummyData';
 import PortfolioList from '../PortfolioList';
 import './Portfolio.scss';
 
 export default function Portfolio() {
   const [selected, setSelected] = useState('featured');
+  const [data, setData] = useState([]);
 
   function highlight(id) {
     setSelected(id);
@@ -32,6 +40,28 @@ export default function Portfolio() {
     },
   ];
 
+  useEffect(() => {
+    switch (selected) {
+      case 'featured':
+        setData(featuredPortfolio);
+        break;
+      case 'web':
+        setData(webPortfolio);
+        break;
+      case 'mobile':
+        setData(mobilePortfolio);
+        break;
+      case 'design':
+        setData(designPortfolio);
+        break;
+      case 'content':
+        setData(contentPortfolio);
+        break;
+      default:
+        setData(featuredPortfolio);
+    }
+  }, [selected]);
+
   return (
     <div className='portfolio' id='portfolio'>
       <h1>Portfolio</h1>
@@ -47,30 +77,12 @@ export default function Portfolio() {
         ))}
       </ul>
       <div className='container'>
-        <div className='item'>
-          <img src='https://source.unsplash.com/random' alt='' />
-          <h3>Banking App</h3>
-        </div>
-        <div className='item'>
-          <img src='https://source.unsplash.com/random' alt='' />
-          <h3>Banking App</h3>
-        </div>
-        <div className='item'>
-          <img src='https://source.unsplash.com/random' alt='' />
-          <h3>Banking App</h3>
-        </div>
-        <div className='item'>
-          <img src='https://source.unsplash.com/random' alt='' />
-          <h3>Banking App</h3>
-        </div>
-        <div className='item'>
-          <img src='https://source.unsplash.com/random' alt='' />
-          <h3>Banking App</h3>
-        </div>
-        <div className='item'>
-          <img src='https://source.unsplash.com/random' alt='' />
-          <h3>Banking App</h3>
-        </div>
+        {data.map((item, index) => (
+          <div className='item' key={`item-${index}`}>
+            <img src={item.img} alt='' />
+            <h3>{item.title}</h3>
+          </div>
+        ))}
       </div>
     </div>
   );
