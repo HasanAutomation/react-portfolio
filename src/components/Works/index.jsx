@@ -22,7 +22,7 @@ export default function Works() {
         style={{ transform: `translateX(-${currentSlide * 100}vw)` }}
       >
         {sliderData.map((item, index) => (
-          <div className='container'>
+          <div className='container' key={`item-${index}`}>
             <div className='item'>
               <div className='left'>
                 <div className='left-container'>
